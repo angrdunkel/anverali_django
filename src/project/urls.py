@@ -38,8 +38,8 @@ urlpatterns = [
     re_path('^accounts/', include('userprofiles.urls')),
 
 
-    re_path(r'^500/$', TemplateView.as_view(template_name="500.html")),
-    re_path(r'^503/$', TemplateView.as_view(template_name="503.html")),
+    #re_path(r'^500/$', TemplateView.as_view(template_name="500.html")),
+    #re_path(r'^503/$', TemplateView.as_view(template_name="503.html")),
     re_path(r'^404/$', TemplateView.as_view(template_name="404.html"), name='404'),
     re_path(r'^403/$', TemplateView.as_view(template_name="403.html"), name='403'),
 ]
