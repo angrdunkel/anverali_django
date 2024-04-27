@@ -1,0 +1,31 @@
+{% load static form_tags i18n %}
+<div class="modal-body">
+    <form method="post" action="{% url 'user_update' object.id %}" class="js-form-update-account">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="{{ form.email.id_for_label }}" class="form-label">Email address</label>
+            {{ form.email|css_class:'form-control'|err_class:'is-invalid'|placeholder:form.email.label }}
+          <div id="emailHelp" class="form-text">Enter a valid email address.</div>
+        </div>
+        <div class="mb-3">
+            <label for="{{ form.first_name.id_for_label }}" class="form-label">First Name</label>
+            {{ form.first_name|css_class:'form-control'|err_class:'is-invalid'|placeholder:form.first_name.label }}      
+        </div>
+        <div class="mb-3">
+            <label for="{{ form.last_name.id_for_label }}" class="form-label">Last Name</label>
+            {{ form.last_name|css_class:'form-control'|err_class:'is-invalid'|placeholder:form.last_name.label }}      
+        </div>
+        <div class="mb-3">
+            <label for="{{ form.type.id_for_label }}" class="form-label">Type</label>
+            {{ form.type|css_class:'form-control'|err_class:'is-invalid'|placeholder:form.type.label }}      
+        </div>
+        <div class="mb-3">
+            {{ form.is_active }}
+            <label for="{{ form.is_active.id_for_label }}" class="form-label">Active</label>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    <a href="#" class="btn btn-primary js-update-account-btn" type="button">Update account</a>
+</div>

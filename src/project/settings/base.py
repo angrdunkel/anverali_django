@@ -41,9 +41,9 @@ def join_to_settings(slug):
 SECRET_KEY = 'django-insecure-1!jak5zh6all1__n_v4k4gd&1wrd038&r$52&4+cmp!*a(l6$)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -55,6 +55,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'compressor',
+
+    'userprofiles',
+    'dashboard',
+    'dashboard.contrib.moderator',
+    'dashboard.contrib.customer',
+    'dashboard.contrib.performer',
 ]
 
 MIDDLEWARE = [
@@ -72,7 +79,7 @@ ROOT_URLCONF = 'project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [join_to_settings('templates'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -80,6 +87,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.csrf',
             ],
         },
     },
@@ -132,6 +141,8 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+AUTH_USER_MODEL = 'userprofiles.User'
 
 
 # Static files (CSS, JavaScript, Images)

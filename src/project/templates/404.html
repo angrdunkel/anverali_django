@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}404{% endblock title %}
+
+{% block content-full %}
+  <div class="container">
+    <div class="row">
+    <div id="page-error" class="row" style='padding-top:50px;padding-bottom:50px;'>
+      <div class="col-md-5 text-right">
+        <span style="font-size:150px;color:#E65C00;">
+          404
+        </span><br />
+        <span style="font-size:40px;color:#333;">
+          {% trans "Page not found" %}
+        </span>
+      </div>
+      <div class="col-md-5 offset-md-1">
+        <div class="text-wrap margTop20" style="color:#333;">
+          <p>{% trans "This can happen for the following reasons" %}:</p>
+          <ul>
+            <li><p>{% trans "page has been deleted or renamed" %};</p></li>
+            <li><p>{% trans "page never existed" %};</p></li>
+            <li><p>{% trans "you had the wrong link" %}.</p></li>
+          </ul>
+
+          <p><strong style="color:#333;">{% trans "What should I do in this case" %}?</strong></p>
+          <ul>
+            <li><p>{% trans "Go to" %} <a href="/" style="color:#E65C00;">{% trans "home page" %}</a>.</p></li>
+            <li><p>{% trans "Go back by pressing the browser's back" %}.</p></li>
+            <li><p>{% trans "Check the spelling of the page address (URL)" %}.</p></li>
+            <li><p>{% trans "Visit the main sections of the site" %}.</p></li>
+          </ul>
+
+          <p>{% trans "If you are sure that this is a misunderstanding and there should definitely be something useful, please contact us" %}!</p>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+{% endblock %}

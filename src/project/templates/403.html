@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}403{% endblock title %}
+
+{% block head-hreflang %}{% endblock %}
+
+{% block content-full %}
+  <div class="wrapper page-403">
+    <h1><span class="letter">4</span><span class="picture"></span><span class="letter">3</span></h1>
+    <h2>{% trans "Access denied" %}</h2>
+    <p>{% trans "You are denied access to this resource." %}</p>
+    <p>Go <a href="#" onclick="top.history.back(); return false">{% trans "back" %}</a> or <a href="/">{% trans "return home" %}</a>.</p>     
+  </div>
+{% endblock %}

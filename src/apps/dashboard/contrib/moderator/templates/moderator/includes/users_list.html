@@ -1,0 +1,6 @@
+<div class="container">
+    <a href="{% url 'registration' %}" type="button" class="btn btn-outline-primary js-registration" >ADD USER</a>
+</div>
+<div class="js-moder-users-container">
+    {% include "moderator/includes/users_list_item.html" %}
+</div>

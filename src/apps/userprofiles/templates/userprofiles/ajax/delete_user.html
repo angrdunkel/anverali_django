@@ -1,0 +1,7 @@
+{% load static form_tags i18n %}
+<div class="modal-body">
+    {{ user.first_name}} {{ user.last_name}}
+</div>
+<div class="modal-footer">
+    <a href="{% url 'user_delete' user.id %}" type="button" class="btn btn-primary js-user-delete-btn" >DELETE USER</a>
+</div>

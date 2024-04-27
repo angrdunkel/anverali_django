@@ -1,0 +1,18 @@
+<table class="table">
+    <thead>
+        <tr>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Email</th>
+        <th scope="col">Type</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+        <td>{{ user.first_name }}</td>
+        <td>{{ user.last_name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.get_type_display }}</td>
+        </tr> 
+    </tbody>
+    </table>
