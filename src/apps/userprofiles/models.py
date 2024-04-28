@@ -1,8 +1,11 @@
 from django.db import models
-
+from django.conf import settings
+from django.core.validators import RegexValidator, EMPTY_VALUES
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+
+import re
 
 from .managers import MyUserManager
 
@@ -77,3 +80,51 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+    
+
+    def save(self, *args, **kwargs):
+            self.email = self.email.lower()
+            return super(User, self).save(*args, **kwargs)
+    
+    def get_full_name(self):
+        middle_name = getattr(self, 'middle_name', '')
+        if middle_name is None:
+            middle_name = ''
+        full_name = "%s %s %s" % (
+            self.first_name,
+            middle_name,
+            self.last_name
+        )
+        full_name = re.sub(r'\s+', ' ', full_name)
+        return full_name.strip()
+    
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        verbose_name=_('User'),
+        related_name='u_profile',
+        on_delete=models.CASCADE,
+    )
+    address = models.CharField(
+        _('Address'), max_length=256,
+        blank=True, 
+        null=True
+    )
+    phone = models.CharField(
+        _("Phone number"), max_length=30,
+        null=True, blank=True, unique=False,
+        validators=[RegexValidator(r'^[\s\d\(\)-]+$')]
+    )
+    experience = models.IntegerField(
+        _("Experience"),
+        default=0)
+
+    def save(self, *args, **kwargs):
+        if not self.phone is None:
+            self.phone = re.sub(
+                r'[-\+\(\)]+', '',
+                re.sub(r'\s+', '', self.phone)
+            )
+
+        super(UserProfile, self).save(*args, **kwargs)
