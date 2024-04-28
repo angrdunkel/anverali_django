@@ -29,3 +29,10 @@ DataDase::
 'PASSWORD': 'anverali',
 'HOST': 'localhost',
 'PORT': '5432',
+
+admin panels::
+http://localhost:8000/dashboard/moderator/
+или
+http://localhost:8000/admin/
+
+
