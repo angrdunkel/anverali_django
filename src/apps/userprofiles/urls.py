@@ -3,11 +3,6 @@ from django.urls import include, path, re_path
 from . import views
 
 urlpatterns = [
-    #path(
-    #        'login/',
-    #        views.SignInViev.as_view(),
-    #        name='login'
-    #    ),  
     path(
         'registration-complite/',
         views.RegistrationCompleteView.as_view(),

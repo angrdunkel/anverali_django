@@ -1,0 +1,47 @@
+
+<table class="table">
+    <thead>
+        <tr>    
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Comment</th>
+        {% if request.user.is_admin %}
+            <th scope="col">Perfomer</th>
+            <th scope="col">Customer</th>
+        {% else %}
+            <th scope="col">
+                {% if request.user.is_customer %}
+                    Perfomer
+                {% elif request.user.is_performer %}
+                    Customer
+                {% endif %}
+            </th>  
+        {% endif %}
+        <th scope="col">Active</th>
+        <th scope="col">Compline</th>
+        </tr>
+    </thead>
+    <tbody>
+       {% for task in tasks %}
+        <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td><a href="#" class="js-open-modal">{{ task.task.title }}</a></td>
+        <td>{{ task.task.comment }}</td>
+        {% if request.user.is_admin %}
+        <td>{{ task.performer.get_full_name }}</td>
+        <td>{{ task.customer.get_full_name }}</td>
+        {% else %}
+            <td>
+                {% if request.user.is_customer %}
+                    {{ task.performer.get_full_name }}
+                {% elif request.user.is_performer %}
+                    {{ task.customer.get_full_name }}
+                {% endif %}            
+            </td> 
+        {% endif %}
+        <td>{{ task.task.is_active }}</td> 
+        <td>{{ task.task.is_complite }}</td>
+        </tr>
+    {% endfor %}  
+    </tbody>
+    </table>

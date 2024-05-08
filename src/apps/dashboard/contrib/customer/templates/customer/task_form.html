@@ -1,0 +1,36 @@
+{% extends "customer/base.html" %}
+{% load static form_tags i18n %}
+
+{% block content %}
+<div class="modal-body">
+    <form method="post" action="{{ action_url }}" class="">
+        {% csrf_token %}
+        <div class="mb-3">            
+            New task
+        </div>
+        <div class="mb-3">            
+            Performer: {{ performer.get_full_name }}
+        </div>
+        <div class="mb-3">
+            <label for="{{ form.title.id_for_label }}" class="form-label">Title</label>
+            {{ form.title|css_class:'form-control'|err_class:'is-invalid'|placeholder:form.title.label }}
+        </div>
+        <div class="mb-3">
+            <label for="{{ form.comment.id_for_label }}" class="form-label">Comment</label>
+            {{ form.comment|css_class:'form-control'|err_class:'is-invalid'|placeholder:form.comment.label }}      
+        </div>
+        <div class="mb-3">
+            {{ form.is_active }}
+            <label for="{{ form.is_active.id_for_label }}" class="form-label">Active</label>
+            {{ form.latitude }}
+        </div>
+
+        
+    
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    <button class="btn btn-primary" type="submit">Create task</button>
+</div>
+</form>
+{% endblock content %}

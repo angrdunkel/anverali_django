@@ -1,0 +1,27 @@
+
+<table class="table">
+    <thead>
+        <tr>    
+        <th scope="col">#</th>
+        <th scope="col">Email</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th> 
+        <th scope="col">Last</th>
+        <th scope="col">Experience</th>
+        <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for performer in performers %}
+        <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ performer.user.email }}</td>
+        <td>{{ performer.user.first_name }}</td>
+        <td>{{ performer.user.last_name }}</td> 
+        <td>{{ performer.experience }}</td>
+        <td><a href="{% url 'user_info' performer.user.id %}" class="js-open-modal">Info</a></td>
+        <td><a href="{% url 'customer_performer_tasks' performer.user.id %}" class="js-open-modal-lg">Tasks</a></td>        
+        </tr>
+    {% endfor %}  
+    </tbody>
+    </table>

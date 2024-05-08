@@ -1,1 +1,11 @@
 {% extends "dashboard/base.html" %}
+{% block page-title %}
+<div class="customer_performers">
+    {% if request.resolver_match.url_name == 'customer_performers' %}
+        Performers
+    {% elif request.resolver_match.url_name == 'customer_tasks' %}
+        Tasks
+    {% else %}
+    {% endif %}
+</div>
+{% endblock page-title %}

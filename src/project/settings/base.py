@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'dashboard.contrib.moderator',
     'dashboard.contrib.customer',
     'dashboard.contrib.performer',
+    'dashboard.contrib.task',
 ]
 
 MIDDLEWARE = [

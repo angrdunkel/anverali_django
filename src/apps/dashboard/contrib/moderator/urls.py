@@ -7,4 +7,9 @@ urlpatterns = [
         r'^$', views.ModeratorView.as_view(),
         name='moders'
     ),
+    re_path(
+        r'^tasks/$',
+        views.ModeratorTaskView.as_view(),
+        name='moderator_tasks'
+    ),
 ]

@@ -21,11 +21,25 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
-          {% if request.resolver_match.url_name == 'moders' %}
+          {% if request.user.is_admin %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'moders' %}">Users</a>
           </li>
           {% endif %}
+          {% if request.user.is_customer %}
+          <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'customer_performers' %}link-primary{% endif %}" href="{% url 'customer_performers' %}">Performers</a>
+          </li>
+          {% endif %}
+            {% if request.user.is_customer %}
+              <li class="nav-item">
+                <a class="nav-link {% if request.resolver_match.url_name == 'customer_tasks' %}link-primary{% endif %}" href="{% url 'customer_tasks' %}">Tasks</a>
+              </li>
+            {% elif request.user.is_performer %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'customer_tasks' %}">Tasks</a>
+              </li>
+            {% endif %}
           <li class="nav-item">
             {% if request.user.is_authenticated %}
             <a class="nav-link" href="{% url 'logout' %}">Logout</a>
@@ -39,6 +53,9 @@
     </div>
   </nav>
 {% endblock header %}
+{% block page-title %}
+
+{% endblock page-title %}
 
 {% block content %}
 
@@ -52,7 +69,7 @@
 {% block footer %}
 
 {% endblock footer %}
-{% include "modals.html"%}
+{% include "includes/modals.html"%}
 
 {% compress js %}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
